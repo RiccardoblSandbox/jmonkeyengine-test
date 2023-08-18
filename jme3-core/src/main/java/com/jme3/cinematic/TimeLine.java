@@ -45,14 +45,14 @@ import java.util.Iterator;
 public class TimeLine extends HashMap<Integer, KeyFrame> implements Savable {
 
     protected int keyFramesPerSeconds = 30;
-    protected int lastKeyFrameIndex = 0;
+    protected int lastKeyFrameIndex=0;
 
     public TimeLine() {
         super();
     }
 
     public KeyFrame getKeyFrameAtTime(float time) {
-        return get(getKeyFrameIndexFromTime(time));
+        return get(getKeyFrameIndexFromTime(time));;
     }
 
     public KeyFrame getKeyFrameAtIndex(int keyFrameIndex) {
