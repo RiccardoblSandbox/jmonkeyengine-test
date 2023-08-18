@@ -58,7 +58,7 @@ public class CursorLoader implements AssetLoader {
 
     private boolean isIco;
     private boolean isAni;
-    private boolean isCur; // .cur format if true
+    private boolean isCur=false; // .cur format if true
 
     /**
      * Loads and return a cursor file of one of the following format: .ani, .cur and .ico.
