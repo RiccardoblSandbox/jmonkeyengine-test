@@ -122,13 +122,13 @@ public final class AWTSettingsDialog extends JFrame {
         String iconPath = sourceSettings.getSettingsDialogImage();
         final URL iconUrl = JmeSystem.class.getResource(iconPath.startsWith("/") ? iconPath : "/" + iconPath);
         if (iconUrl == null) {
-            throw new AssetNotFoundException(sourceSettings.getSettingsDialogImage());
-        }
-        return showDialog(sourceSettings, iconUrl, loadSettings);
+            throw new AssetNotFoundException(sourceSettings.getSettingsDialogImage());;  }
+         return showDialog(sourceSettings, iconUrl, loadSettings);
     }
 
     public static boolean showDialog(AppSettings sourceSettings, String imageFile, boolean loadSettings) {
-        return showDialog(sourceSettings, getURL(imageFile), loadSettings);
+        return showDialog(sourceSettings, getURL(imageFile),
+                          loadSettings);
     }
 
     public static boolean showDialog(AppSettings sourceSettings, URL imageFile, boolean loadSettings) {
