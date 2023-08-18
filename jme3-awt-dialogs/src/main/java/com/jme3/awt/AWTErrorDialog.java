@@ -67,16 +67,19 @@ public class AWTErrorDialog extends JDialog {
         container.setLayout(new BorderLayout());
         
         JTextArea textArea = new JTextArea();
-        textArea.setText(message);
-        textArea.setEditable(false);
+        textArea.setText(      message);
+        textArea.setEditable(false);;
         textArea.setMargin(new Insets(PADDING, PADDING, PADDING, PADDING));
         add(new JScrollPane(textArea), BorderLayout.CENTER);
+
+        
         
         final JDialog dialog = this;
-        JButton button = new JButton(new AbstractAction("OK"){
+        JButton button = new JButton(
+            new AbstractAction("OK"){
             @Override
             public void actionPerformed(ActionEvent e) {
-                dialog.dispose();
+                dialog .dispose();
             }
         });
         add(button, BorderLayout.SOUTH);
