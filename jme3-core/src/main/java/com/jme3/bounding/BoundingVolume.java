@@ -67,14 +67,13 @@ public abstract class BoundingVolume implements Savable, Cloneable, Collidable {
         Capsule;
     }
 
-    protected int checkPlane = 0;
+    protected int checkPlane=0;
     protected Vector3f center = new Vector3f();
 
     public BoundingVolume() {
     }
 
-    public BoundingVolume(Vector3f center) {
-        this.center.set(center);
+    public BoundingVolume(Vector3f center) {  this.center.set(center);
     }
 
     /**
