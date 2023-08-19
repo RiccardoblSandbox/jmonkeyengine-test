@@ -57,12 +57,11 @@ public class BulletAppState
      * true if-and-only-if the physics simulation is running (started but not
      * yet stopped)
      */
-    protected volatile boolean isRunning = false;
-    protected Application app;
-    /**
+    protected volatile boolean isRunning=false;
+    protected Application app;    /**
      * manager that manages this state, set during attach
      */
-    protected AppStateManager stateManager;
+    protected AppStateManager        stateManager;
     /**
      * executor service for physics tasks, or null if parallel simulation is not
      * running
@@ -85,7 +84,7 @@ public class BulletAppState
      * minimum coordinate values for the physics space when using AXIS_SWEEP
      * broadphase algorithms (not null)
      */
-    protected Vector3f worldMin = new Vector3f(-10000f, -10000f, -10000f);
+    protected Vector3f worldMin = new Vector3f(-10000f,-10000f, -10000f);
     /**
      * maximum coordinate values for the physics space when using AXIS_SWEEP
      * broadphase algorithms (not null)
