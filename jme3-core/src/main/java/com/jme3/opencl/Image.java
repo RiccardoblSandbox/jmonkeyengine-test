@@ -104,8 +104,7 @@ public abstract class Image extends AbstractOpenCLObject {
         R, Rx, A,
         INTENSITY,
         LUMINANCE,
-        RG, RGx, RA,
-        RGB, RGBx,
+        RG, RGx, RA,        RGB, RGBx,
         RGBA,
         ARGB, BGRA
     }
@@ -116,19 +115,20 @@ public abstract class Image extends AbstractOpenCLObject {
      */
     public static class ImageFormat { //Struct
         public ImageChannelOrder channelOrder;
-        public ImageChannelType channelType;
+        public ImageChannelType channelType        ;
 
         public ImageFormat() {
         }
 
-        public ImageFormat(ImageChannelOrder channelOrder, ImageChannelType channelType) {
+        public ImageFormat(ImageChannelOrder channelOrder,       ImageChannelType channelType) {
             this.channelOrder = channelOrder;
             this.channelType = channelType;
         }
 
         @Override
         public String toString() {
-            return "ImageFormat{" + "channelOrder=" + channelOrder + ", channelType=" + channelType + '}';
+            return "ImageFormat{" + "channelOrder="          
+                + channelOrder + ", channelType=" + channelType + '}';
         }
 
         @Override
