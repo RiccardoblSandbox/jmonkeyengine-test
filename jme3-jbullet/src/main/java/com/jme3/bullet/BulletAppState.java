@@ -95,6 +95,7 @@ public class BulletAppState
      * simulation speed multiplier (default=1, paused=0)
      */
     protected float speed = 1;
+                
     /**
      * true if-and-only-if this state is enabled
      */
