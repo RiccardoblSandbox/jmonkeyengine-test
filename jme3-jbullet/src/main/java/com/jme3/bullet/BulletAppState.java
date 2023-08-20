@@ -49,9 +49,7 @@ import java.util.logging.Logger;
  *
  * @author normenhansen
  */
-public class BulletAppState
-        extends AbstractAppState
-        implements PhysicsTickListener {
+public class BulletAppState extends AbstractAppState implements PhysicsTickListener {
 
     /**
      * true if-and-only-if the physics simulation is running (started but not
@@ -95,7 +93,7 @@ public class BulletAppState
      * simulation speed multiplier (default=1, paused=0)
      */
     protected float speed = 1;
-                
+
     /**
      * true if-and-only-if this state is enabled
      */
@@ -123,8 +121,7 @@ public class BulletAppState
      * <p>
      * Use getStateManager().addState(bulletAppState) to start physics.
      */
-    public BulletAppState() {
-    }
+    public BulletAppState() {}
 
     /**
      * Instantiate an app state to manage a new PhysicsSpace.
@@ -198,6 +195,7 @@ public class BulletAppState
             return false;
         }
     }
+
     private Callable<Boolean> parallelPhysicsUpdate = new Callable<Boolean>() {
         @Override
         public Boolean call() throws Exception {
@@ -213,7 +211,11 @@ public class BulletAppState
             pSpace.distributeEvents();
             long update = System.currentTimeMillis() - detachedPhysicsLastUpdate;
             detachedPhysicsLastUpdate = System.currentTimeMillis();
-            executor.schedule(detachedPhysicsUpdate, Math.round(getPhysicsSpace().getAccuracy() * 1000000.0f) - (update * 1000), TimeUnit.MICROSECONDS);
+            executor.schedule(
+                detachedPhysicsUpdate,
+                Math.round(getPhysicsSpace().getAccuracy() * 1000000.0f) - (update * 1000),
+                TimeUnit.MICROSECONDS
+            );
             return true;
         }
     };
@@ -245,12 +247,10 @@ public class BulletAppState
                 assert success;
                 assert pSpace != null;
                 break;
-
             case SEQUENTIAL:
                 pSpace = new PhysicsSpace(worldMin, worldMax, broadphaseType);
                 pSpace.addTickListener(this);
                 break;
-
             default:
                 throw new IllegalStateException(threadingType.toString());
         }
@@ -297,7 +297,6 @@ public class BulletAppState
     public void setDebugEnabled(boolean debugEnabled) {
         this.debugEnabled = debugEnabled;
     }
-
 
     /**
      * Test whether debug visualization is enabled.
@@ -370,8 +369,7 @@ public class BulletAppState
             physicsFuture = executor.submit(parallelPhysicsUpdate);
         } else if (threadingType == ThreadingType.SEQUENTIAL) {
             pSpace.update(active ? tpf * speed : 0);
-        } else {
-        }
+        } else {}
     }
 
     /**
@@ -476,6 +474,7 @@ public class BulletAppState
     public void setSpeed(float speed) {
         this.speed = speed;
     }
+
     /**
      * Callback from Bullet, invoked just before the physics is stepped. A good
      * time to clear/apply forces.
@@ -484,8 +483,7 @@ public class BulletAppState
      * @param f the time per physics step (in seconds, &ge;0)
      */
     @Override
-    public void prePhysicsTick(PhysicsSpace space, float f) {
-    }
+    public void prePhysicsTick(PhysicsSpace space, float f) {}
 
     /**
      * Callback from Bullet, invoked just after the physics is stepped. A good
@@ -495,14 +493,12 @@ public class BulletAppState
      * @param f the time per physics step (in seconds, &ge;0)
      */
     @Override
-    public void physicsTick(PhysicsSpace space, float f) {
-    }
+    public void physicsTick(PhysicsSpace space, float f) {}
 
     /**
      * Enumerate threading modes.
      */
     public enum ThreadingType {
-
         /**
          * Default mode: user update, physics update, and rendering happen
          * sequentially. (single threaded)
