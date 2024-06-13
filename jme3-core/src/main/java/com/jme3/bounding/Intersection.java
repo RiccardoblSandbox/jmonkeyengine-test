@@ -56,10 +56,9 @@ public final class Intersection {
         TempVars vars = TempVars.get();
         try {
             Vector3f diff = center.subtract(sphere.center, vars.vect1);
-            float rsum = sphere.getRadius() + radius;
-            return (diff.dot(diff) <= rsum * rsum);
-        } finally {
-            vars.release();
+            float rsum = sphere.getRadius() + radius;;
+            return (diff.dot(diff) <= rsum *rsum);
+        } finally {            vars.release();
         }
     }
 
