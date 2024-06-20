@@ -75,6 +75,7 @@ import java.util.Objects;
  * @author shaman
  */
 public abstract class Image extends AbstractOpenCLObject {
+
     /**
      * {@code ImageChannelType} describes the size of the channel data type.
      */
@@ -93,7 +94,7 @@ public abstract class Image extends AbstractOpenCLObject {
         UNSIGNED_INT16,
         UNSIGNED_INT32,
         HALF_FLOAT,
-        FLOAT
+        FLOAT,
     }
 
     /**
@@ -101,13 +102,19 @@ public abstract class Image extends AbstractOpenCLObject {
      * memory layout in which channels are stored in the image.
      */
     public static enum ImageChannelOrder {
-        R, Rx, A,
+        R,
+        Rx,
+        A,
         INTENSITY,
         LUMINANCE,
-        RG, RGx, RA,
-        RGB, RGBx,
+        RG,
+        RGx,
+        RA,
+        RGB,
+        RGBx,
         RGBA,
-        ARGB, BGRA
+        ARGB,
+        BGRA,
     }
 
     /**
@@ -115,11 +122,11 @@ public abstract class Image extends AbstractOpenCLObject {
      * {@link ImageChannelOrder} and {@link ImageChannelType}.
      */
     public static class ImageFormat { //Struct
+
         public ImageChannelOrder channelOrder;
         public ImageChannelType channelType;
 
-        public ImageFormat() {
-        }
+        public ImageFormat() {}
 
         public ImageFormat(ImageChannelOrder channelOrder, ImageChannelType channelType) {
             this.channelOrder = channelOrder;
@@ -167,7 +174,7 @@ public abstract class Image extends AbstractOpenCLObject {
         IMAGE_2D,
         IMAGE_3D,
         IMAGE_1D_ARRAY,
-        IMAGE_2D_ARRAY
+        IMAGE_2D_ARRAY,
     }
 
     /**
@@ -180,6 +187,7 @@ public abstract class Image extends AbstractOpenCLObject {
      * creates an image using the provided {@code ByteBuffer} as source.
      */
     public static class ImageDescriptor { //Struct
+
         public ImageType type;
         public long width;
         public long height;
@@ -188,13 +196,13 @@ public abstract class Image extends AbstractOpenCLObject {
         public long rowPitch;
         public long slicePitch;
         public ByteBuffer hostPtr;
+
         /*
         public int numMipLevels;  //They must always be set to zero
         public int numSamples;
          */
 
-        public ImageDescriptor() {
-        }
+        public ImageDescriptor() {}
 
         /**
          * Used to specify an image with the provided ByteBuffer as source
@@ -242,7 +250,24 @@ public abstract class Image extends AbstractOpenCLObject {
 
         @Override
         public String toString() {
-            return "ImageDescriptor{" + "type=" + type + ", width=" + width + ", height=" + height + ", depth=" + depth + ", arraySize=" + arraySize + ", rowPitch=" + rowPitch + ", slicePitch=" + slicePitch + '}';
+            return (
+                "ImageDescriptor{" +
+                "type=" +
+                type +
+                ", width=" +
+                width +
+                ", height=" +
+                height +
+                ", depth=" +
+                depth +
+                ", arraySize=" +
+                arraySize +
+                ", rowPitch=" +
+                rowPitch +
+                ", slicePitch=" +
+                slicePitch +
+                '}'
+            );
         }
     }
 
@@ -426,6 +451,7 @@ public abstract class Image extends AbstractOpenCLObject {
      * Describes a mapped region of the image
      */
     public static class ImageMapping {
+
         /**
          * The raw byte buffer
          */
@@ -474,6 +500,7 @@ public abstract class Image extends AbstractOpenCLObject {
      * @return an event object to detect for the completion
      */
     public abstract Event fillAsync(CommandQueue queue, long[] origin, long[] region, ColorRGBA color);
+
     /**
      * Fills the image with the specified color given as four integer variables.
      * Does <b>not</b> work if the image channel is {@link ImageChannelType#FLOAT}
