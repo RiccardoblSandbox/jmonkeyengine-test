@@ -59,16 +59,14 @@ public class AppletHarness extends Applet {
     protected LegacyApplication app;
 
     protected String appClass;
-    protected URL appCfg = null;
+    protected URL appCfg=null;
     protected URL assetCfg = null;
 
-    public static Applet getApplet(Application app){
-        return appToApplet.get(app);
+    public static Applet getApplet(Application app){  return appToApplet.get(app);
     }
 
     @SuppressWarnings("unchecked")
-    private void createCanvas(){
-        AppSettings settings = new AppSettings(true);
+    private void createCanvas(){        AppSettings settings = new AppSettings(true);
 
         // load app cfg
         if (appCfg != null){
